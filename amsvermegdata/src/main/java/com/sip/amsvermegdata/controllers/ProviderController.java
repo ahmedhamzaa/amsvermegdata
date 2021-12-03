@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/provider/")
 public class ProviderController {
@@ -29,8 +30,7 @@ public class ProviderController {
     public String listProviders(Model model) {
 
 
-        model.addAttribute("providers",
-                providerRepository.findAll());
+        model.addAttribute("providers", providerRepository.findAll());
 
         return "provider/listProviders";
 
@@ -63,16 +63,13 @@ public class ProviderController {
 
         //long id2 = 100L;
 
-        Provider provider = providerRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Invalid provider Id:" + id));
+        Provider provider = providerRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid provider Id:" + id));
 
         System.out.println("suite du programme...");
 
         providerRepository.delete(provider);
 
- /*model.addAttribute("providers",
-providerRepository.findAll());
- return "provider/listProviders";*/
+ /*model.addAttribute("providers",providerRepository.findAll());return "provider/listProviders";*/
         return "redirect:../list";
     }
 
